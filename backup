@@ -2,7 +2,7 @@
 set -e
 IFS=:
 
-TODAY=$(date "+%Y%m%d")
+TODAY=$(/bin/date "+%Y%m%d")
 BACKUP_DEST_FOLDER=${BACKUP_DEST_FOLDER:-/var/tmp/}
 BACKUP_DELETE_LOCAL_COPY=${BACKUP_DELETE_LOCAL_COPY:-true}
 BACKUP_S3_HOST=${BACKUP_S3_HOST:-s3.amazonaws.com}
@@ -13,7 +13,7 @@ if ${BACKUP_NO_SSL}; then
 fi
 
 put_file_to_s3(){
-    s3cmd \
+    /usr/bin/s3cmd \
         --host="${BACKUP_S3_HOST}" \
         --host-bucket="${BACKUP_S3_HOST_BUCKET}" \
         "${SSL_OPTION}" \
